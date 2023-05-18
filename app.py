@@ -12,9 +12,11 @@ def root():
 
     # error handling
     if 'line' not in data or 'text' not in data:
-        return 'missing arguments'
+        return 'missing headers'
     elif not data.get('line', default='None').isdigit():
-        return 'line argument only takes numbers'
+        return 'line header only takes numbers'
+    elif not data.get('text', default='None').isalnum():
+        return 'text header doen\'t take special characters'
 
     # opens datas to get the text inside
     with open('datas.txt', 'r') as file:
@@ -46,9 +48,9 @@ def read():
 
     # error handling
     if 'line' not in data:
-        return 'missing arguments'
+        return 'missing headers'
     elif not data.get('line', default='None').isdigit():
-        return 'line argument only takes numbers'
+        return 'line header only takes numbers'
 
     # opens datas to get the text inside
     with open('datas.txt', 'r') as file:
