@@ -19,8 +19,8 @@ def root():
     elif not data.get('text', default='None').isalnum():
         # detects if the special characters is space and ignores it
         if not str(data.get('text', default='None')).replace(' ', 'x').isalnum():
-            print(str(data.get('text', default='None')).replace(' ', 'x'))
-            return 'text header doen\'t take special characters'
+            if str(data.get('text', default='None')).replace('%', 'x').isalnum():
+                return 'text header doen\'t take special characters'
 
     # opens datas to get the text inside
     with open('datas.txt', 'r') as file:
