@@ -15,8 +15,12 @@ def root():
         return 'missing headers'
     elif not data.get('line', default='None').isdigit():
         return 'line header only takes numbers'
+    # checks if text has special characters
     elif not data.get('text', default='None').isalnum():
-        return 'text header doen\'t take special characters'
+        # detects if the special characters is space and ignores it
+        if not str(data.get('text', default='None')).replace(' ', 'x').isalnum():
+            print(str(data.get('text', default='None')).replace(' ', 'x'))
+            return 'text header doen\'t take special characters'
 
     # opens datas to get the text inside
     with open('datas.txt', 'r') as file:
@@ -62,4 +66,4 @@ def read():
     
 
 if __name__ == '__main__':
-    app.run(debug = True, port = 5000, host = '0.0.0.0')
+    app.run(debug = True, port = 5001, host = '0.0.0.0')
